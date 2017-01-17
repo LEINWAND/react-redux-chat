@@ -3,13 +3,13 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { RouterContext } from 'react-router'
+import { Router, RouterContext } from 'react-router'
 
 import HeaderBar from '../components/HeaderBar'
 
 
 type Props = {
-  // props
+  router: Router,
 }
 
 type State = {
@@ -51,9 +51,7 @@ class Chat extends Component {
           title="chat"
           leftItem={{
             icon: 'ion-filing',
-            onClick: () => {
-              alert('navigate to home')
-            }
+            onClick: () => this.props.router.goBack(),
           }}
         />
       </div>
@@ -72,7 +70,7 @@ const mapStateToProps = (state: Object, routerContext: RouterContext) => {
 
   return {
     // main: state.main,
-    // router: routerContext.router,
+    router: routerContext.router,
   }
 }
 
