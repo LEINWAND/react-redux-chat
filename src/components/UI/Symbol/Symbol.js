@@ -43,16 +43,12 @@ class Symbol extends Component {
   render() {
     const { icon, onClick } = this.props
 
-    const buttonClasses = classnames([
-      'Button',
-      { 'clickable': !! onClick },
-    ])
     const iconClasses = classnames([
       'icon', icon,
     ])
 
     return (
-      <div className={buttonClasses} onClick={onClick}>
+      <div className="Button clickable" onClick={onClick}>
         <div className="Symbol">
           <i className={iconClasses}></i>
         </div>
