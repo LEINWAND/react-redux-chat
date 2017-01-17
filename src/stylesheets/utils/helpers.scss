@@ -15,13 +15,27 @@ html, body {
   overflow: scroll;
 
   background: #eee;
-  font: 16px "Helvetica Neue", Helvetica, sans-serif;
+  font: 16px "Avenir", "Helvetica Neue", sans-serif;
+}
+
+
+.view {
+  height: 100%;
+  width: 100%;
+}
+
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+  text-align: center;
 }
 
 a {
-  color: $primaryColor;
+  color: $primary;
 
   &:hover, &:visited {
-    color: $primaryColorHover;
+    color: $secondary;
   }
 }

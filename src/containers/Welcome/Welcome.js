@@ -5,12 +5,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, RouterContext } from 'react-router'
 
-import { exampleAction } from '../actions/main'
+// import { exampleAction } from '../actions/main'
 
 import type { Dispatch } from '../actions/types'
-
-import Credits from '../components/Credits'
-import ExampleButton from '../components/ExampleButton'
 
 
 type Props = {
@@ -23,7 +20,7 @@ type State = {
 }
 
 
-class Home extends Component {
+class Welcome extends Component {
   props: Props
   state: State
 
@@ -32,8 +29,8 @@ class Home extends Component {
 
     // this.state = {}
 
-    const Home = (this: any)
-    Home.onExampleAction = this.onExampleAction.bind(this)
+    const Welcome = (this: any)
+    Welcome.onExampleAction = this.onExampleAction.bind(this)
   }
 
   /* Component Lifecycle */
@@ -52,18 +49,8 @@ class Home extends Component {
 
   render() {
     return (
-      <div style={{ padding: '1rem' }}>
-        <h1>Welcome to your awesome react-redux app !</h1>
-
-        <ExampleButton
-          id={this.props.id}
-          onClick={this.onExampleAction}
-        />
-
-        <p><Link to="login">Login</Link></p>
-        <p><Link to="/asdf">404 Route</Link></p>
-
-        <Credits />
+      <div id="Welcome" className="view">
+        <h1>Welcome !</h1>
       </div>
     )
   }
@@ -88,4 +75,4 @@ const mapStateToProps = (state: Object, router: RouterContext) => {
 
 export default connect(
   mapStateToProps
-)(Home)
+)(Welcome)

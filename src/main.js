@@ -9,8 +9,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore'
 
 import App from './containers/App'
-import Home from './containers/Home'
-import Login from './containers/Login'
+import Welcome from './containers/Welcome'
 import NoMatch from './containers/NoMatch'
 
 
@@ -23,9 +22,8 @@ const AppRouter = () => {
   return (
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Home} />
+        <IndexRoute component={Welcome} />
       </Route>
-      <Route path="login" component={Login} />
       <Route path="*" component={NoMatch} />
     </Router>
   )
