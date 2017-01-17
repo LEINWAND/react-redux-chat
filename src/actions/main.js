@@ -4,20 +4,11 @@
 import type { Action } from './types'
 
 
-export function exampleAction(id: number): Action {
+export function changeName(name: string): Action {
   return {
-    type: 'EXAMPLE_ACTION',
+    type: 'CHANGE_NAME',
     payload: {
-      id
-    }
-  }
-}
-
-export function colorAction(color: string): Action {
-  return {
-    type: 'COLOR_ACTION',
-    payload: {
-      color
+      name
     }
   }
 }
