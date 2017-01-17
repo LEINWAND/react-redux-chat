@@ -1,0 +1,30 @@
+@import '../../stylesheets/utils/variables';
+
+
+.HeaderBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  z-index: 90;
+
+
+  h1 {
+    // font-size: 2rem;
+    font-weight: normal;
+  }
+
+  .leftItem {
+    float: left;
+    width: 41px;
+    padding-left: 11px;
+    cursor: pointer;
+  }
+  .rightItem {
+    float: right;
+    width: 41px;
+    padding-right: 11px;
+    cursor: pointer;
+  }
+}

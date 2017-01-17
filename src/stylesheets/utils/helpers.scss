@@ -41,6 +41,28 @@ a {
 }
 
 
+.clickable {
+  cursor: pointer;
+}
+
+
+/// Layout
+
+.row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row-between {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .column-around {
   display: flex;
   flex-direction: column;
