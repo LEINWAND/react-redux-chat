@@ -45,9 +45,7 @@ class Symbol extends Component {
     const { className, icon, onClick } = this.props
 
     const buttonClasses = classnames([
-      'Button',
-      className,
-      { 'clickable': !! onClick },
+      'Button clickable', className,
     ])
     const iconClasses = classnames([
       'icon', icon,

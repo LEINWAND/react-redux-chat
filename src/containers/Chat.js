@@ -4,8 +4,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
+import moment from 'moment'
 
 import HeaderBar from '../components/HeaderBar'
+import Symbol from '../components/UI/Symbol'
 
 
 type Props = {
@@ -45,6 +47,34 @@ class Chat extends Component {
 
 
   render() {
+    const messages = [{
+      id: 0,
+      name: 'iosif',
+      text: 'hellow !',
+      createdAt: moment.unix(),
+    }, {
+      id: 1,
+      name: 'vali',
+      text: 'heeey !',
+      createdAt: moment.unix() + 86400,
+    }, {
+      id: 2,
+      name: 'iosif',
+      text: 'how are you',
+      createdAt: moment.unix() + 86400*2,
+    }, {
+      id: 3,
+      name: 'vali',
+      text: 'i\'m okay :)',
+      createdAt: moment.unix() + 86400*3,
+    }, {
+      id: 4,
+      name: 'vali',
+      text: 'nice to see you !',
+      createdAt: moment.unix() + 86400*4,
+    }]
+
+
     return (
       <div id="Chat">
         <HeaderBar
@@ -54,6 +84,23 @@ class Chat extends Component {
             onClick: () => this.props.router.goBack(),
           }}
         />
+
+        <div className="content" style={{
+          marginTop: 44, padding: '1rem',
+        }}>
+          { messages.map((message, index) => {
+              return (
+                <div className="message column-around" key={index}>
+                  <div className="user row-center">
+                    <Symbol icon="ion-record" />
+                    <div className="name">{message.name}</div>
+                  </div>
+                  <div className="text">{message.text}</div>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }
