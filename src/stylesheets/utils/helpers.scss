@@ -14,8 +14,9 @@ html, body {
   bottom: 0;
   overflow: scroll;
 
-  background: #eee;
+  background: #fff;
   font: 16px "Avenir", "Helvetica Neue", sans-serif;
+  color: $dark;
 }
 
 
@@ -29,7 +30,6 @@ h1 {
   font-size: 2rem;
   font-weight: 300;
   margin: 0;
-  text-align: center;
 }
 
 a {
