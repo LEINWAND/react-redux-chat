@@ -14,8 +14,8 @@ html, body {
   bottom: 0;
   overflow: scroll;
 
-  background: #fff;
-  font: 16px "Avenir", "Helvetica Neue", sans-serif;
+  background: $white;
+  font: 16px $Avenir;
   color: $dark;
 }
 
