@@ -25,6 +25,10 @@ html, body {
   width: 100%;
 }
 
+.content {
+  margin-top: 44px;
+}
+
 
 h1 {
   font-size: 2rem;
@@ -46,12 +50,31 @@ a {
 }
 
 
+/// Colors
+
+.bg-primary {
+  background: $primary;
+}
+.bg-secondary {
+  background: $secondary;
+}
+
+
 /// Layout
 
 .row-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.row-start {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .row-between {
@@ -61,6 +84,11 @@ a {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .column-around {

@@ -6,11 +6,16 @@ import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
 import moment from 'moment'
 
+import type { Message as MessageType } from '../reducers/messages'
+
 import HeaderBar from '../components/HeaderBar'
+import Message from '../components/Message'
 import Symbol from '../components/UI/Symbol'
 
 
 type Props = {
+  currentUser: string,
+  messages: Array<MessageType>,
   router: Router,
 }
 
@@ -47,33 +52,7 @@ class Chat extends Component {
 
 
   render() {
-    const messages = [{
-      id: 0,
-      name: 'iosif',
-      text: 'hellow !',
-      createdAt: moment.unix(),
-    }, {
-      id: 1,
-      name: 'vali',
-      text: 'heeey !',
-      createdAt: moment.unix() + 86400,
-    }, {
-      id: 2,
-      name: 'iosif',
-      text: 'how are you',
-      createdAt: moment.unix() + 86400*2,
-    }, {
-      id: 3,
-      name: 'vali',
-      text: 'i\'m okay :)',
-      createdAt: moment.unix() + 86400*3,
-    }, {
-      id: 4,
-      name: 'vali',
-      text: 'nice to see you !',
-      createdAt: moment.unix() + 86400*4,
-    }]
-
+    const { messages, router } = this.props
 
     return (
       <div id="Chat">
@@ -81,23 +60,13 @@ class Chat extends Component {
           title="chat"
           leftItem={{
             icon: 'ion-filing',
-            onClick: () => this.props.router.goBack(),
+            onClick: () => router.goBack(),
           }}
         />
 
-        <div className="content" style={{
-          marginTop: 44, padding: '1rem',
-        }}>
+        <div className="content">
           { messages.map((message, index) => {
-              return (
-                <div className="message column-around" key={index}>
-                  <div className="user row-center">
-                    <Symbol icon="ion-record" />
-                    <div className="name">{message.name}</div>
-                  </div>
-                  <div className="text">{message.text}</div>
-                </div>
-              )
+              return <Message data={message} key={index} />
             })
           }
         </div>
@@ -116,7 +85,8 @@ const mapStateToProps = (state: Object, routerContext: RouterContext) => {
   // console.log('  routerContext: ', routerContext)
 
   return {
-    // main: state.main,
+    currentUser: state.main.name,
+    messages: state.messages,
     router: routerContext.router,
   }
 }

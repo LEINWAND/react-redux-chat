@@ -1,0 +1,35 @@
+@import '../../stylesheets/utils/variables';
+
+$circleDiameter: 18px;
+$circleLeftMargin: 4px;
+$nameLeftMargin: 10px;
+
+.Message {
+  margin-bottom: 20px;
+
+
+  .details {
+    margin-bottom: 10px;
+
+    .circle {
+      width: $circleDiameter;
+      height: $circleDiameter;
+      border-radius: 9px;
+      margin-left: $circleLeftMargin;
+    }
+    .name {
+      margin-left: 10px;
+    }
+  }
+
+  .text {
+    margin-left: (
+      $circleLeftMargin +
+      $circleDiameter +
+      $nameLeftMargin
+    );
+    padding: 1rem;
+    border-radius: 10px;
+    color: $white;
+  }
+}
