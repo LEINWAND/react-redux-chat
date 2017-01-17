@@ -3,20 +3,25 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, RouterContext } from 'react-router'
+import { Router, RouterContext } from 'react-router'
 
-// import { exampleAction } from '../actions/main'
+import { changeName } from '../../actions/main'
 
-import type { Dispatch } from '../actions/types'
+import type { Dispatch } from '../../actions/types'
+
+import Input from '../../components/UI/Input'
+import Symbol from '../../components/UI/Symbol'
 
 
 type Props = {
   dispatch: Dispatch,
-  id: number,
+  name: string,
+  router: Router,
 }
 
 type State = {
-  // state
+  error: ?string,
+  name: string,
 }
 
 
@@ -27,10 +32,13 @@ class Welcome extends Component {
   constructor(props: Props) {
     super(props)
 
-    // this.state = {}
+    this.state = {
+      error: null,
+      name: props.name,
+    }
 
     const Welcome = (this: any)
-    Welcome.onExampleAction = this.onExampleAction.bind(this)
+    Welcome.onEnterChat = this.onEnterChat.bind(this)
   }
 
   /* Component Lifecycle */
@@ -48,9 +56,23 @@ class Welcome extends Component {
 
 
   render() {
+    const { error, name } = this.state
+
     return (
-      <div id="Welcome" className="view">
-        <h1>Welcome !</h1>
+      <div id="Welcome" className="column-around view">
+        <h1>Welcome!</h1>
+        <Input
+          error={error}
+          maxLength={20}
+          placeholder="Enter your name"
+          value={name}
+          onChange={(event: Object) => this.setState({ name: event.target.value })}
+        />
+        <Symbol
+          className="ActionButton"
+          icon="ion-android-done"
+          onClick={this.onEnterChat}
+        />
       </div>
     )
   }
@@ -58,18 +80,23 @@ class Welcome extends Component {
 
   /// Event Handlers
 
-  onExampleAction() {
-    const { dispatch, id } = this.props
+  onEnterChat(event: Object): void {
+    const name = this.state.name
 
-    const newId = id + 1
-
-    dispatch( exampleAction(newId) )
+    if (name) {
+      const { dispatch, router } = this.props
+      dispatch( changeName(name) )
+      router.push('/chat')
+    } else {
+      this.setState({ error: 'Bitte ausfüllen.' })
+    }
   }
 }
 
-const mapStateToProps = (state: Object, router: RouterContext) => {
+const mapStateToProps = (state: Object, routerContext: RouterContext) => {
   return {
-    id: state.main.id,
+    name: state.main.name,
+    router: routerContext.router,
   }
 }
 
