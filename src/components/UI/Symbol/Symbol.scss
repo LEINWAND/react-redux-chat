@@ -13,10 +13,15 @@
   width: 34px;
   height: 34px;
 
-  -webkit-border-radius: 22px;
-  -moz-border-radius: 22px;
-  border-radius: 22px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
 
+  &.ActionButton {
+    background: $primary;
+    color: $white;
+    padding: 9px;
+  }
 
   &:hover {
     background: $gray;

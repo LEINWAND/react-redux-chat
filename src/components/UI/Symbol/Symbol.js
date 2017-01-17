@@ -6,6 +6,7 @@ import classnames from 'classnames'
 
 
 type Props = {
+  className?: string,
   icon: string,
   onClick: () => void,
 }
@@ -41,10 +42,11 @@ class Symbol extends Component {
 
 
   render() {
-    const { icon, onClick } = this.props
+    const { className, icon, onClick } = this.props
 
     const buttonClasses = classnames([
       'Button',
+      className,
       { 'clickable': !! onClick },
     ])
     const iconClasses = classnames([
