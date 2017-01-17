@@ -1,0 +1,27 @@
+@import '../utils/variables';
+@import '../base/typography';
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#leinwand {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+
+  background: #eee;
+  font: 16px "Helvetica Neue", Helvetica, sans-serif;
+}
+
+a {
+  color: $primaryColor;
+
+  &:hover, &:visited {
+    color: $primaryColorHover;
+  }
+}

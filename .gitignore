@@ -1,0 +1,14 @@
+### OS files
+.DS_Store
+Thumbs.db
+
+### Node
+node_modules/
+
+### Webpack
+lib/
+
+### Other
+*.log
+*.sass-cache*
+*~imageoptim*
