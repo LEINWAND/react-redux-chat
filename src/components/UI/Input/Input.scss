@@ -1,0 +1,29 @@
+@import '../../../stylesheets/utils/variables';
+
+
+.Input {
+
+  input {
+    font: 1.4rem $Avenir;
+    border: none;
+    border-bottom: 1px solid $gray;
+    background: transparent;
+    text-align: center;
+    outline: none;
+
+    /* outline: 0 for mozilla */
+    &::-moz-focus-inner {
+     border: 0
+    }
+
+    &::-webkit-input-placeholder { color: $gray; font-size: 1.2rem; }
+    &:-moz-placeholder { color: $gray; font-size: 1.2rem; }
+    &::-moz-placeholder { color: $gray; font-size: 1.2rem; }
+    &:-ms-input-placeholder { color: $gray; font-size: 1.2rem; }
+  }
+
+  .error {
+    color: $error;
+    text-align: center;
+  }
+}
