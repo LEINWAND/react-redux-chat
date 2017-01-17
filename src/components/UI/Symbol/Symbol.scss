@@ -1,0 +1,32 @@
+@import '../../../stylesheets/utils/variables';
+
+
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  border: 0;
+  outline: none;
+
+  width: 34px;
+  height: 34px;
+
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+
+
+  &:hover {
+    background: $gray;
+  }
+
+  .Symbol {
+    .icon::before {
+      display: flex;
+
+      font-size: 2rem;
+    }
+  }
+}
