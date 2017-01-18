@@ -58,6 +58,10 @@ class Chat extends Component {
   }
   componentDidMount() {
     this.scrollIntoView()
+
+    const Chat = (this: any)
+    const NewMessageInput = findDOMNode(Chat.NewMessageInput)
+    NewMessageInput.querySelector('input').focus()
   }
   // componentWillUnmount() {}
 
@@ -68,6 +72,10 @@ class Chat extends Component {
   componentDidUpdate(prevProps: Props, prevState: State) {
     if ( prevState.newMessage === this.state.newMessage) {
       this.scrollIntoView()
+
+      this.setState({
+        newMessage: '',
+      })
     }
   }
 
@@ -95,13 +103,12 @@ class Chat extends Component {
                 || prevMessage.name !== message.name
 
               return (
-                <div className="message-wrapper" key={index}>
-                  <Message
-                    data={message}
-                    own={isOwnMessage}
-                    showDetails={showDetails}
-                  />
-                </div>
+                <Message
+                  key={index}
+                  data={message}
+                  own={isOwnMessage}
+                  showDetails={showDetails}
+                />
               )
             })
           }
@@ -112,6 +119,7 @@ class Chat extends Component {
 
         <div className="new-message column-center">
           <Input
+            ref={(ref) => (this: any).NewMessageInput = ref}
             className="full-width"
             placeholder="what do you want to say ?"
             maxLength={100}
