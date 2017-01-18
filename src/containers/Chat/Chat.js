@@ -182,6 +182,8 @@ class Chat extends Component {
     }
 
     dispatch( newMessage(message))
+    const Chat = (this: any)
+    Chat.messagesRef.push(message)
 
     this.scrollIntoView()
   }
