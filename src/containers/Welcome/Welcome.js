@@ -92,10 +92,10 @@ class Welcome extends Component {
 
     if (user) {
       const { dispatch, router } = this.props
-      dispatch( changeUser(user) )
+      dispatch( changeUser(user))
       router.push('/chat')
     } else {
-      this.setState({ error: 'Bitte ausfüllen.' })
+      this.setState({ error: 'Please enter your name.' })
     }
   }
 }
