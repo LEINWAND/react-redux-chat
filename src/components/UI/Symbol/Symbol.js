@@ -8,7 +8,7 @@ import classnames from 'classnames'
 type Props = {
   className?: string,
   icon: string,
-  onClick: () => void,
+  onClick: (event: Object) => void,
 }
 
 type State = {
