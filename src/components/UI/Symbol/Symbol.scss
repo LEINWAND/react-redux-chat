@@ -24,11 +24,12 @@
 
     &:hover {
       background: $secondary;
+      color: $white;
     }
   }
 
   &:hover {
-    background: $lightgray;
+    color: $primary;
   }
 
   .Symbol {

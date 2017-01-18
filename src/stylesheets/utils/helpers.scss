@@ -65,6 +65,15 @@ a {
   background: $lightgray;
 }
 
+
+.border-primary {
+  border: 2.5px solid $primary;
+}
+.border-secondary {
+  border: 2.5px solid $secondary;
+}
+
+
 .color-primary {
   color: $primary;
 }

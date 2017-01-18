@@ -47,13 +47,13 @@ class Message extends Component {
 
     const circleClasses = classnames([
       'circle',
-      { 'bg-primary color-white': !! own },
-      { 'bg-lightgray color-primary': ! own },
+      { 'border-primary': !! own },
+      { 'border-secondary': ! own },
     ])
     const textClasses = classnames([
       'text',
       { 'bg-primary color-white': !! own },
-      { 'bg-lightgray color-primary': ! own },
+      { 'bg-lightgray': ! own },
     ])
 
     return (
