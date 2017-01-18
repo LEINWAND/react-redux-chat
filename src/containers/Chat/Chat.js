@@ -101,6 +101,8 @@ class Chat extends Component {
           // add some error handling
           console.debug(error)
         })
+    } else {
+      this.setState({ isFetching: false })
     }
   }
 
