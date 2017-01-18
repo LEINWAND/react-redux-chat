@@ -5,9 +5,10 @@ $circleLeftMargin: 4px;
 $nameLeftMargin: 10px;
 
 .Message {
-  margin-bottom: 20px;
+  // ...
 
   .details {
+    margin-top: 10px;
     margin-bottom: 10px;
 
     .circle {
@@ -27,6 +28,7 @@ $nameLeftMargin: 10px;
       $circleDiameter +
       $nameLeftMargin
     );
+    margin-bottom: 6px;
     padding: 1rem;
     border-radius: 10px;
   }
