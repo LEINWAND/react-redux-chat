@@ -35,10 +35,10 @@ $newMessageInputHeight: 60px;
         font-size: 1rem;
         border-bottom: 0;
 
-        &::-webkit-input-placeholder { color: $white; font-size: 1rem; }
-        &:-moz-placeholder { color: $white; font-size: 1rem; }
-        &::-moz-placeholder { color: $white; font-size: 1rem; }
-        &:-ms-input-placeholder { color: $white; font-size: 1rem; }
+        &::-webkit-input-placeholder { color: $primaryLight; font-size: 1rem; }
+        &:-moz-placeholder { color: $primaryLight; font-size: 1rem; }
+        &::-moz-placeholder { color: $primaryLight; font-size: 1rem; }
+        &:-ms-input-placeholder { color: $primaryLight; font-size: 1rem; }
       }
     }
   }
