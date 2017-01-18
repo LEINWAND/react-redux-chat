@@ -6,11 +6,11 @@ import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
 import moment from 'moment'
 
-import type { Message as MessageType } from '../reducers/messages'
+import type { Message as MessageType } from '../../reducers/messages'
 
-import HeaderBar from '../components/HeaderBar'
-import Message from '../components/Message'
-import Symbol from '../components/UI/Symbol'
+import HeaderBar from '../../components/HeaderBar'
+import Message from '../../components/Message'
+import Symbol from '../../components/UI/Symbol'
 
 
 type Props = {
@@ -40,7 +40,11 @@ class Chat extends Component {
   /* Component Lifecycle */
 
   /// Mounting
-  // componentWillMount() {}
+  componentWillMount() {
+    if ( this.props.currentUser === '' ) {
+      this.props.router.push('/')
+    }
+  }
   // componentDidMount() {}
   // componentWillUnmount() {}
 
@@ -52,7 +56,7 @@ class Chat extends Component {
 
 
   render() {
-    const { messages, router } = this.props
+    const { currentUser, messages, router } = this.props
 
     return (
       <div id="Chat">
@@ -66,7 +70,19 @@ class Chat extends Component {
 
         <div className="content">
           { messages.map((message, index) => {
-              return <Message data={message} key={index} />
+              const isOwnMessage = message.name == currentUser
+
+              const prevMessage = messages[index-1]
+              const prevOwnMessage = prevMessage && prevMessage.name === currentUser
+
+              return (
+                <Message
+                  data={message}
+                  own={isOwnMessage}
+                  showDetails={true}
+                  key={index}
+                />
+              )
             })
           }
         </div>

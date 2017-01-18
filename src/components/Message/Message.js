@@ -9,6 +9,8 @@ import Symbol from '../UI/Symbol'
 
 type Props = {
   data: Object,
+  own: boolean,
+  showDetails: boolean,
 }
 
 type State = {
@@ -43,25 +45,28 @@ class Message extends Component {
 
   render() {
     const { name, text } = this.props.data
+    const { own, showDetails } = this.props
 
-    const isOwnMessage = true
     const circleClasses = classnames([
       'circle',
-      { 'bg-primary': isOwnMessage },
-      { 'bg-secondary': ! isOwnMessage },
+      { 'bg-primary': !! own },
+      { 'bg-secondary': ! own },
     ])
     const textClasses = classnames([
       'text',
-      { 'bg-primary': isOwnMessage },
-      { 'bg-secondary': ! isOwnMessage },
+      { 'bg-primary': !! own },
+      { 'bg-secondary': ! own },
     ])
 
     return (
       <div className="Message column">
-        <div className="details row-start">
-          <div className={circleClasses}></div>
-          <div className="name">{name}</div>
-        </div>
+        { showDetails === true
+          ? <div className="details row-start">
+              <div className={circleClasses}></div>
+              <div className="name">{name}</div>
+            </div>
+          : null
+        }
         <div className={textClasses}>{text}</div>
       </div>
     )

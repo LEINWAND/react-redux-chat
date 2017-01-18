@@ -12,12 +12,3 @@ export function newMessage(data: Message): Action {
     payload: data
   }
 }
-
-export function colorAction(color: string): Action {
-  return {
-    type: 'COLOR_ACTION',
-    payload: {
-      color
-    }
-  }
-}
