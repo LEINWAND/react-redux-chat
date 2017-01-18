@@ -14,7 +14,7 @@ type Props = {
   type?: string,
   value: string | number,
   onChange?: (event: Object) => void,
-  onSubmit?: () => void,
+  onSubmit?: (event: Object) => void,
 }
 
 type State = {
@@ -81,7 +81,7 @@ class Input extends Component {
     const onSubmit = this.props.onSubmit
 
     if ( onSubmit && event.key === 'Enter' ) {
-      onSubmit()
+      onSubmit(event)
     }
   }
 

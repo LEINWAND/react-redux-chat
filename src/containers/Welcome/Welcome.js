@@ -2,6 +2,7 @@
 'use strict'
 
 import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
 
@@ -45,7 +46,11 @@ class Welcome extends Component {
 
   /// Mounting
   // componentWillMount() {}
-  // componentDidMount() {}
+  componentDidMount() {
+    const Welcome = (this: any)
+    const NameInput = findDOMNode(Welcome.NameInput)
+    NameInput.querySelector('input').focus()
+  }
   // componentWillUnmount() {}
 
   /// Updating
@@ -62,11 +67,13 @@ class Welcome extends Component {
       <div id="Welcome" className="column-around view">
         <h1>Welcome!</h1>
         <Input
+          ref={(ref) => (this: any).NameInput = ref}
           error={error}
           maxLength={20}
           placeholder="Enter your name"
           value={user}
           onChange={(event: Object) => this.setState({ user: event.target.value })}
+          onSubmit={this.onEnterChat}
         />
         <Symbol
           className="ActionButton"
