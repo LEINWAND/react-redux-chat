@@ -2,6 +2,7 @@
 'use strict'
 
 import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
 import { trim } from 'lodash'
@@ -25,6 +26,7 @@ type Props = {
   dispatch: Dispatch,
   messages: Array<MessageType>,
   router: Router,
+  dispatch: Dispatch,
 }
 
 type State = {
@@ -80,14 +82,20 @@ class Chat extends Component {
       })
       .then(() => this.setState({ isLoading: false }))
   }
-  // componentDidMount() {}
+  componentDidMount() {
+    this.scrollIntoView()
+  }
   // componentWillUnmount() {}
 
   /// Updating
   // componentWillReceiveProps(nextProps: Props) {}
   // shouldComponentUpdate(nextProps: Props, nextState: State) {}
   // componentWillUpdate(nextProps: Props, nextState: State) {}
-  // componentDidUpdate(prevProps: Props, prevState: State) {}
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if ( prevState.newMessage === this.state.newMessage) {
+      this.scrollIntoView()
+    }
+  }
 
 
   render() {
@@ -127,6 +135,8 @@ class Chat extends Component {
           <div className="timeline"></div>
         </div>
 
+        <div ref={(ref) => (this: any).ScrollPointer = ref} />
+
         <div className="new-message column-center">
           <Input
             className="full-width"
@@ -135,7 +145,7 @@ class Chat extends Component {
             value={newMessage}
             onChange={(event: Object) => {
               this.setState({
-                newMessage: trim(event.target.value),
+                newMessage: event.target.value,
               })
             }}
             onSubmit={this.onSendMessage}
@@ -146,6 +156,14 @@ class Chat extends Component {
   }
 
 
+  scrollIntoView() {
+    const Chat = (this: any)
+    const ScrollPointer = findDOMNode(Chat.ScrollPointer)
+    // ScrollPointer.scrollTop = ScrollPointer.scrollHeight;
+    ScrollPointer.scrollIntoView();
+  }
+
+
   /// Event Handlers
 
   onSendMessage() {
@@ -153,11 +171,13 @@ class Chat extends Component {
 
     const message = {
       name: currentUser,
-      text: this.state.newMessage,
+      text: trim(this.state.newMessage),
       createdAt: moment().unix(),
     }
 
     dispatch( newMessage(message))
+
+    this.scrollIntoView()
   }
 }
 

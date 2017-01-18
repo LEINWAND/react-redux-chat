@@ -10,7 +10,7 @@ type State = {
 
 
 const initialState: State = {
-  user: 'iosif',
+  user: '',
 }
 
 

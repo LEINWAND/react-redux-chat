@@ -9,6 +9,15 @@ $newMessageInputHeight: 60px;
 
   .content {
     margin-bottom: $newMessageInputHeight;
+
+    .timeline {
+      position: fixed;
+      top: 0;
+      left: 26px;
+      bottom: 0;
+      border-left: 1px solid $lightgray;
+      z-index: -1;
+    }
   }
 
   .new-message {
@@ -32,14 +41,5 @@ $newMessageInputHeight: 60px;
         &:-ms-input-placeholder { color: $white; font-size: 1rem; }
       }
     }
-  }
-
-  .timeline {
-    position: fixed;
-    top: 0;
-    left: 26px;
-    bottom: 0;
-    border-left: 1px solid $lightgray;
-    z-index: -1;
   }
 }
