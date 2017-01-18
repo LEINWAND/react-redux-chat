@@ -4,11 +4,11 @@
 import type { Action } from './types'
 
 
-export function changeName(name: string): Action {
+export function changeUser(user: string): Action {
   return {
-    type: 'CHANGE_NAME',
+    type: 'CHANGE_USER',
     payload: {
-      name
+      user
     }
   }
 }

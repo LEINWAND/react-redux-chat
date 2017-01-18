@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
 
-import { changeName } from '../../actions/main'
+import { changeUser } from '../../actions/main'
 
 import type { Dispatch } from '../../actions/types'
 
@@ -15,13 +15,13 @@ import Symbol from '../../components/UI/Symbol'
 
 type Props = {
   dispatch: Dispatch,
-  name: string,
   router: Router,
+  user: string,
 }
 
 type State = {
   error: string,
-  name: string,
+  user: string,
 }
 
 
@@ -34,7 +34,7 @@ class Welcome extends Component {
 
     this.state = {
       error: '',
-      name: props.name,
+      user: props.user,
     }
 
     const Welcome = (this: any)
@@ -56,7 +56,7 @@ class Welcome extends Component {
 
 
   render() {
-    const { error, name } = this.state
+    const { error, user } = this.state
 
     return (
       <div id="Welcome" className="column-around view">
@@ -65,8 +65,8 @@ class Welcome extends Component {
           error={error}
           maxLength={20}
           placeholder="Enter your name"
-          value={name}
-          onChange={(event: Object) => this.setState({ name: event.target.value })}
+          value={user}
+          onChange={(event: Object) => this.setState({ user: event.target.value })}
         />
         <Symbol
           className="ActionButton"
@@ -81,11 +81,11 @@ class Welcome extends Component {
   /// Event Handlers
 
   onEnterChat(event: Object): void {
-    const name = this.state.name
+    const user = this.state.user
 
-    if (name) {
+    if (user) {
       const { dispatch, router } = this.props
-      dispatch( changeName(name) )
+      dispatch( changeUser(user) )
       router.push('/chat')
     } else {
       this.setState({ error: 'Bitte ausfüllen.' })
@@ -95,7 +95,7 @@ class Welcome extends Component {
 
 const mapStateToProps = (state: Object, routerContext: RouterContext) => {
   return {
-    name: state.main.name,
+    user: state.main.user,
     router: routerContext.router,
   }
 }

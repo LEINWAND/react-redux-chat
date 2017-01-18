@@ -141,7 +141,7 @@ const mapStateToProps = (state: Object, routerContext: RouterContext) => {
   // console.log('  routerContext: ', routerContext)
 
   return {
-    currentUser: state.main.name,
+    currentUser: state.main.user,
     messages: state.messages,
     router: routerContext.router,
   }
