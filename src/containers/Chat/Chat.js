@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { Router, RouterContext } from 'react-router'
-import { trim } from 'lodash'
+import { find, trim } from 'lodash'
 import moment from 'moment'
 
 import { FirebaseDB } from '../../core/firebase'
@@ -30,7 +30,7 @@ type Props = {
 }
 
 type State = {
-  isLoading: boolean,
+  isFetching: boolean,
   newMessage: string,
   clear: boolean,
 }
@@ -44,7 +44,7 @@ class Chat extends Component {
     super(props)
 
     this.state = {
-      isLoading: true,
+      isFetching: true,
       newMessage: '',
       clear: false,
     }
@@ -60,30 +60,49 @@ class Chat extends Component {
   /// Mounting
 
   componentWillMount() {
-    const { currentUser, router } = this.props
+    const messagesRef = (this: any).messagesRef
 
-    if ( currentUser === '' ) {
-      router.push('/')
-    }
+    // NOTE: add real-time listener for new messages and save them to messages store
+    messagesRef.on('child_added', (snapshot: Object) => {
+      const message = snapshot.val()
 
-    const Chat = (this: any)
-    Chat.messagesRef
-      .once('value')
-      .then((snapshot: Object) => {
-        const messages = snapshot.val()
+      // NOTE: only trigger for data changes after initial data loaded
+      if ( this.state.isFetching ) return
 
-        const migratedMessages = []
-        for ( const messageId in messages ) {
-          const message = {
-            id: messageId,
-            ...messages[messageId]
-          }
-          migratedMessages.push(message)
+      const messageId = snapshot.key
+      if ( ! find(this.props.messages, { id: messageId }) ) {
+        const messageData = {
+          id: messageId,
+          ...message
         }
+        this.props.dispatch( newMessage(messageData) )
+      }
+    })
 
-        this.props.dispatch( fetchMessages(migratedMessages) )
-      })
-      .then(() => this.setState({ isLoading: false }))
+    // NOTE: initially fetch all messages from firebase if there are no messages in store yet
+    if ( ! this.props.messages.length ) {
+      messagesRef
+        .once('value')
+        .then((snapshot: Object) => {
+          const messages = snapshot.val()
+
+          const migratedMessages = []
+          for ( const messageId in messages ) {
+            const message = {
+              id: messageId,
+              ...messages[messageId]
+            }
+            migratedMessages.push(message)
+          }
+
+          this.props.dispatch( fetchMessages(migratedMessages) )
+        })
+        .then(() => this.setState({ isFetching: false }))
+        .catch((error) => {
+          // add some error handling
+          console.debug(error)
+        })
+    }
   }
 
   componentDidMount() {
@@ -116,7 +135,7 @@ class Chat extends Component {
 
   render() {
     const { currentUser, messages, router } = this.props
-    const { isLoading, newMessage } = this.state
+    const { isFetching, newMessage } = this.state
 
     return (
       <div id="Chat">
@@ -129,7 +148,7 @@ class Chat extends Component {
         />
 
         <div className="content">
-          { ! isLoading
+          { ! isFetching
             ? messages.map((message, index) => {
                 const isOwnMessage = message.name == currentUser
 
@@ -157,7 +176,7 @@ class Chat extends Component {
           <Input
             ref={(ref) => (this: any).NewMessageInput = ref}
             className="full-width"
-            disabled={isLoading}
+            disabled={isFetching}
             placeholder="what do you want to say ?"
             maxLength={100}
             value={newMessage}
@@ -193,7 +212,6 @@ class Chat extends Component {
       createdAt: moment().unix(),
     }
 
-    dispatch( newMessage(message))
     const Chat = (this: any)
     Chat.messagesRef.push(message)
 
