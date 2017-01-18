@@ -2,6 +2,13 @@
 
 
 .Input {
+  // ...
+
+
+  &.full-width {
+    width: 100%;
+  }
+
 
   input {
     font: 1.4rem $Avenir;
@@ -11,6 +18,11 @@
     text-align: center;
     outline: none;
 
+
+    &.full-width {
+      width: 100%;
+    }
+    
     /* outline: 0 for mozilla */
     &::-moz-focus-inner {
      border: 0
