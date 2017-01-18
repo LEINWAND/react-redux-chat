@@ -73,13 +73,14 @@ class Chat extends Component {
               const isOwnMessage = message.name == currentUser
 
               const prevMessage = messages[index-1]
-              const prevOwnMessage = prevMessage && prevMessage.name === currentUser
+              const showDetails = ! prevMessage
+                || prevMessage.name !== message.name
 
               return (
                 <Message
                   data={message}
                   own={isOwnMessage}
-                  showDetails={true}
+                  showDetails={showDetails}
                   key={index}
                 />
               )
