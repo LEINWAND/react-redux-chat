@@ -72,7 +72,7 @@ class Chat extends Component {
         <HeaderBar
           title="chat"
           leftItem={{
-            icon: 'ion-filing',
+            icon: 'ion-coffee',
             onClick: () => router.goBack(),
           }}
         />
