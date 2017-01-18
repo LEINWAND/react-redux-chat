@@ -126,7 +126,7 @@ class Chat extends Component {
       id: String(Math.random(0,1)*1000),
       name: currentUser,
       text: this.state.newMessage,
-      createdAt: moment.unix(),
+      createdAt: moment().unix(),
     }
 
     dispatch( newMessage(message))
