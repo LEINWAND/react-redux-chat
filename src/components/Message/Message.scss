@@ -1,11 +1,10 @@
 @import '../../stylesheets/utils/variables';
 
-$circleDiameter: 18px;
+$circleDiameter: 10px;
 $circleLeftMargin: 4px;
 $nameLeftMargin: 10px;
 
 .Message {
-  // ...
 
   .details {
     margin-top: 10px;
@@ -14,11 +13,13 @@ $nameLeftMargin: 10px;
     .circle {
       width: $circleDiameter;
       height: $circleDiameter;
-      border-radius: 9px;
+      background: $white;
+      border-radius: 20px;
       margin-left: $circleLeftMargin;
     }
     .name {
       margin-left: 10px;
+      color: $gray;
     }
   }
 
