@@ -6,7 +6,7 @@ import type { Message } from '../reducers/messages'
 
 export type Action =
   // main
-    { type: 'CHANGE_NAME', payload: { name: string } }
+    { type: 'CHANGE_USER', payload: { user: string } }
 
   // messages
   | { type: 'NEW_MESSAGE', payload: Message }

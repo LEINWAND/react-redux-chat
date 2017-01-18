@@ -1,12 +1,11 @@
 @import '../../stylesheets/utils/variables';
 
 
-$newMessageInputHeight: 40px;
+$newMessageInputHeight: 60px;
 
 
 #Chat {
   padding: 1rem;
-
 
   .content {
     margin-bottom: $newMessageInputHeight;
@@ -27,14 +26,19 @@ $newMessageInputHeight: 40px;
     right: 0;
     bottom: 0;
     height: $newMessageInputHeight;
-    display: flex;
-    align-items: flex-end;
-    background: $whiteOpaque;
 
+    background: $primary;
 
     .Input {
       input {
+        color: $white;
+        font-size: 1rem;
         border-bottom: 0;
+
+        &::-webkit-input-placeholder { color: $white; font-size: 1rem; }
+        &:-moz-placeholder { color: $white; font-size: 1rem; }
+        &::-moz-placeholder { color: $white; font-size: 1rem; }
+        &:-ms-input-placeholder { color: $white; font-size: 1rem; }
       }
     }
   }

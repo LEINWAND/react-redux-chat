@@ -110,7 +110,7 @@ class Chat extends Component {
 
         <div ref={(ref) => (this: any).ScrollPointer = ref} />
 
-        <div className="new-message">
+        <div className="new-message column-center">
           <Input
             className="full-width"
             placeholder="what do you want to say ?"
@@ -146,7 +146,7 @@ class Chat extends Component {
       id: Math.random(0,1)*1000,
       name: currentUser,
       text: trim(this.state.newMessage),
-      createdAt: moment.unix(),
+      createdAt: moment().unix(),
     }
 
     dispatch( newMessage(message))
@@ -163,7 +163,7 @@ const mapStateToProps = (state: Object, routerContext: RouterContext) => {
   // console.log('  routerContext: ', routerContext)
 
   return {
-    currentUser: state.main.name,
+    currentUser: state.main.user,
     messages: state.messages,
     router: routerContext.router,
   }

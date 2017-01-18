@@ -5,12 +5,12 @@ import type { Action } from '../actions/types'
 
 
 type State = {
-  name: string,
+  user: string,
 }
 
 
 const initialState: State = {
-  name: 'iosif',
+  user: 'iosif',
 }
 
 
@@ -18,8 +18,8 @@ export default function mainReducer(
   state: State = initialState, action: Action
 ): State {
   switch (action.type) {
-    case 'CHANGE_NAME':
-      return changeName(state, action)
+    case 'CHANGE_USER':
+      return changeUser(state, action)
 
     default:
       return state
@@ -27,9 +27,9 @@ export default function mainReducer(
 }
 
 
-function changeName(state, action) {
+function changeUser(state, action) {
   return {
     ...state,
-    name: action.payload.name,
+    user: action.payload.user,
   }
 }
