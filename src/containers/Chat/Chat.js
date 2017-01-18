@@ -32,6 +32,7 @@ type Props = {
 type State = {
   isLoading: boolean,
   newMessage: string,
+  clear: boolean,
 }
 
 
@@ -45,6 +46,7 @@ class Chat extends Component {
     this.state = {
       isLoading: true,
       newMessage: '',
+      clear: false,
     }
 
     const Chat = (this: any)
@@ -56,6 +58,7 @@ class Chat extends Component {
   /* Component Lifecycle */
 
   /// Mounting
+
   componentWillMount() {
     const { currentUser, router } = this.props
 
@@ -82,6 +85,7 @@ class Chat extends Component {
       })
       .then(() => this.setState({ isLoading: false }))
   }
+
   componentDidMount() {
     this.scrollIntoView()
 
@@ -89,6 +93,7 @@ class Chat extends Component {
     const NewMessageInput = findDOMNode(Chat.NewMessageInput)
     NewMessageInput.querySelector('input').focus()
   }
+
   // componentWillUnmount() {}
 
   /// Updating
@@ -98,6 +103,13 @@ class Chat extends Component {
   componentDidUpdate(prevProps: Props, prevState: State) {
     if ( prevState.newMessage === this.state.newMessage) {
       this.scrollIntoView()
+
+      if (this.state.clear) {
+        this.setState({
+          newMessage: '',
+          clear: false,
+        })
+      }
     }
   }
 
@@ -184,6 +196,10 @@ class Chat extends Component {
     dispatch( newMessage(message))
     const Chat = (this: any)
     Chat.messagesRef.push(message)
+
+    this.setState({
+      clear: true,
+    })
 
     this.scrollIntoView()
   }
