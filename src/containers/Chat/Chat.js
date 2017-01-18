@@ -133,7 +133,7 @@ class Chat extends Component {
             ? messages.map((message, index) => {
                 const isOwnMessage = message.name == currentUser
 
-                const prevMessage = messages[index-1]
+                const prevMessage = messages[index - 1]
                 const showDetails = ! prevMessage
                   || prevMessage.name !== message.name
 
@@ -142,7 +142,7 @@ class Chat extends Component {
                     data={message}
                     own={isOwnMessage}
                     showDetails={showDetails}
-                    key={index}
+                    key={message.id}
                   />
                 )
               })
@@ -157,6 +157,7 @@ class Chat extends Component {
           <Input
             ref={(ref) => (this: any).NewMessageInput = ref}
             className="full-width"
+            disabled={isLoading}
             placeholder="what do you want to say ?"
             maxLength={100}
             value={newMessage}
@@ -193,6 +194,8 @@ class Chat extends Component {
     }
 
     dispatch( newMessage(message))
+    const Chat = (this: any)
+    Chat.messagesRef.push(message)
 
     this.setState({
       clear: true,
