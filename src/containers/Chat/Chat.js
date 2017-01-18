@@ -98,7 +98,7 @@ class Chat extends Component {
           <div className="timeline"></div>
         </div>
 
-        <div className="new-message">
+        <div className="new-message column-center">
           <Input
             className="full-width"
             placeholder="what do you want to say ?"
