@@ -26,7 +26,6 @@ type Props = {
   dispatch: Dispatch,
   messages: Array<MessageType>,
   router: Router,
-  dispatch: Dispatch,
 }
 
 type State = {
