@@ -98,10 +98,6 @@ class Chat extends Component {
   componentDidUpdate(prevProps: Props, prevState: State) {
     if ( prevState.newMessage === this.state.newMessage) {
       this.scrollIntoView()
-
-      this.setState({
-        newMessage: '',
-      })
     }
   }
 
