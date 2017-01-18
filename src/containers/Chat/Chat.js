@@ -62,10 +62,6 @@ class Chat extends Component {
   componentWillMount() {
     const { currentUser, router } = this.props
 
-    if ( currentUser === '' ) {
-      router.push('/')
-    }
-
     const Chat = (this: any)
     Chat.messagesRef
       .once('value')

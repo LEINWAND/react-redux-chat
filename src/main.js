@@ -24,7 +24,7 @@ const AppRouter = () => {
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Welcome} />
-		<Route path="chat" component={Chat} />
+        <Route path="chat" component={Chat} />
       </Route>
       <Route path="*" component={NoMatch} />
     </Router>
