@@ -48,7 +48,7 @@ class Message extends Component {
     const circleClasses = classnames([
       'circle',
       { 'border-primary': !! own },
-      { 'border-lightgray': ! own },
+      { 'border-secondary': ! own },
     ])
     const textClasses = classnames([
       'text',

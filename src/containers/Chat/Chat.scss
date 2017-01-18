@@ -1,3 +1,14 @@
+@import '../../stylesheets/utils/variables';
+
 #Chat {
   padding: 1rem;
+
+  .timeline {
+    position: fixed;
+    top: 0;
+    left: 26px;
+    bottom: 0;
+    border-left: 1px solid $lightgray;
+    z-index: -1;
+  }
 }

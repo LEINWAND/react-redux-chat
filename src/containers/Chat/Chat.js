@@ -86,6 +86,7 @@ class Chat extends Component {
               )
             })
           }
+          <div className="timeline"></div>
         </div>
       </div>
     )
