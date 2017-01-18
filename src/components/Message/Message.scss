@@ -17,9 +17,13 @@ $nameLeftMargin: 10px;
       border-radius: 20px;
       margin-left: $circleLeftMargin;
     }
-    .name {
-      margin-left: 10px;
+    .info {
       color: $gray;
+      margin-left: 10px;
+
+      .timestamp {
+        font-size: 0.7rem;
+      }
     }
   }
 

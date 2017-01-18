@@ -2,11 +2,14 @@
 'use strict'
 
 import React, { Component } from 'react'
+import moment from 'moment'
 import classnames from 'classnames'
+
+import type { Message as MessageType } from '../../reducers/messages'
 
 
 type Props = {
-  data: Object,
+  data: MessageType,
   own: boolean,
   showDetails: boolean,
 }
@@ -42,8 +45,10 @@ class Message extends Component {
 
 
   render() {
-    const { name, text } = this.props.data
+    const { createdAt, name, text } = this.props.data
     const { own, showDetails } = this.props
+
+    const date = moment(createdAt).format('DD.MM.YYYY HH:MM')
 
     const circleClasses = classnames([
       'circle',
@@ -61,7 +66,10 @@ class Message extends Component {
         { showDetails === true
           ? <div className="details row-start">
               <div className={circleClasses}></div>
-              <div className="name">{name}</div>
+              <div className="info row-between">
+                {name}
+                <div className="timestamp">{date}</div>
+              </div>
             </div>
           : null
         }
