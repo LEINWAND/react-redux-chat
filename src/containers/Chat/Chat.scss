@@ -1,3 +1,33 @@
+@import '../../stylesheets/utils/variables';
+
+
+$newMessageInputHeight: 40px;
+
+
 #Chat {
   padding: 1rem;
+
+
+  .content {
+    margin-bottom: $newMessageInputHeight;
+  }
+
+
+  .new-message {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $newMessageInputHeight;
+    display: flex;
+    align-items: flex-end;
+    background: $whiteOpaque;
+
+
+    .Input {
+      input {
+        border-bottom: 0;
+      }
+    }
+  }
 }
