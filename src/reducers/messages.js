@@ -39,6 +39,7 @@ const initialState: Array<Message> = [{
   createdAt: 1484693358 + 86400*4,
 }]
 
+
 type State = Array<Message>
 
 

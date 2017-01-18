@@ -4,8 +4,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-import Symbol from '../UI/Symbol'
-
 
 type Props = {
   data: Object,
@@ -49,13 +47,13 @@ class Message extends Component {
 
     const circleClasses = classnames([
       'circle',
-      { 'bg-primary': !! own },
-      { 'bg-secondary': ! own },
+      { 'bg-primary color-white': !! own },
+      { 'bg-lightgray color-primary': ! own },
     ])
     const textClasses = classnames([
       'text',
-      { 'bg-primary': !! own },
-      { 'bg-secondary': ! own },
+      { 'bg-primary color-white': !! own },
+      { 'bg-lightgray color-primary': ! own },
     ])
 
     return (
