@@ -21,6 +21,10 @@
     background: $primary;
     color: $white;
     padding: 9px;
+
+    &:hover {
+      background: $secondary;
+    }
   }
 
   &:hover {
