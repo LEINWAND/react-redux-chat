@@ -8,7 +8,9 @@ import { Router, RouterContext } from 'react-router'
 import { trim } from 'lodash'
 import moment from 'moment'
 
-import { newMessage } from '../../actions/messages'
+import { FirebaseDB } from '../../core/firebase'
+
+import { fetchMessages, newMessage } from '../../actions/messages'
 
 import type { Dispatch } from '../../actions/types'
 import type { Message as MessageType } from '../../reducers/messages'
@@ -21,12 +23,14 @@ import Input from '../../components/UI/Input'
 
 type Props = {
   currentUser: string,
+  dispatch: Dispatch,
   messages: Array<MessageType>,
   router: Router,
   dispatch: Dispatch,
 }
 
 type State = {
+  isLoading: boolean,
   newMessage: string,
 }
 
@@ -39,11 +43,14 @@ class Chat extends Component {
     super(props)
 
     this.state = {
+      isLoading: true,
       newMessage: '',
     }
 
     const Chat = (this: any)
     Chat.onSendMessage = this.onSendMessage.bind(this)
+
+    Chat.messagesRef = FirebaseDB.ref().child('messages')
   }
 
   /* Component Lifecycle */
@@ -55,6 +62,25 @@ class Chat extends Component {
     if ( currentUser === '' ) {
       router.push('/')
     }
+
+    const Chat = (this: any)
+    Chat.messagesRef
+      .once('value')
+      .then((snapshot: Object) => {
+        const messages = snapshot.val()
+
+        const migratedMessages = []
+        for ( const messageId in messages ) {
+          const message = {
+            id: messageId,
+            ...messages[messageId]
+          }
+          migratedMessages.push(message)
+        }
+
+        this.props.dispatch( fetchMessages(migratedMessages) )
+      })
+      .then(() => this.setState({ isLoading: false }))
   }
   componentDidMount() {
     this.scrollIntoView()
@@ -82,7 +108,7 @@ class Chat extends Component {
 
   render() {
     const { currentUser, messages, router } = this.props
-    const newMessage = this.state.newMessage
+    const { isLoading, newMessage } = this.state
 
     return (
       <div id="Chat">
@@ -95,22 +121,24 @@ class Chat extends Component {
         />
 
         <div className="content">
-          { messages.map((message, index) => {
-              const isOwnMessage = message.name == currentUser
+          { ! isLoading
+            ? messages.map((message, index) => {
+                const isOwnMessage = message.name == currentUser
 
-              const prevMessage = messages[index-1]
-              const showDetails = ! prevMessage
-                || prevMessage.name !== message.name
+                const prevMessage = messages[index-1]
+                const showDetails = ! prevMessage
+                  || prevMessage.name !== message.name
 
-              return (
-                <Message
-                  key={index}
-                  data={message}
-                  own={isOwnMessage}
-                  showDetails={showDetails}
-                />
-              )
-            })
+                return (
+                  <Message
+                    data={message}
+                    own={isOwnMessage}
+                    showDetails={showDetails}
+                    key={index}
+                  />
+                )
+              })
+            : <div className="text-align-center">Loading messages ...</div>
           }
           <div className="timeline"></div>
         </div>
@@ -151,7 +179,6 @@ class Chat extends Component {
     const { currentUser, dispatch } = this.props
 
     const message = {
-      id: Math.random(0,1)*1000,
       name: currentUser,
       text: trim(this.state.newMessage),
       createdAt: moment().unix(),
@@ -161,8 +188,6 @@ class Chat extends Component {
 
     this.scrollIntoView()
   }
-
-  // ...
 }
 
 const mapStateToProps = (state: Object, routerContext: RouterContext) => {
