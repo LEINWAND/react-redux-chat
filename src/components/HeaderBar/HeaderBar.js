@@ -7,10 +7,15 @@ import classnames from 'classnames'
 import Symbol from '../UI/Symbol'
 
 
+type Icon = {
+  icon: string,
+  onClick: () => void,
+}
+
 type Props = {
   title: string,
-  leftItem: Object,
-  rightItem: Object,
+  leftItem?: Icon,
+  rightItem?: Icon,
 }
 
 type State = {
@@ -71,7 +76,7 @@ class HeaderBar extends Component {
           { rightItem
             ? <Symbol
                 icon={rightItem.icon}
-                onClick={leftItem.onClick}
+                onClick={rightItem.onClick}
               />
             : null
           }

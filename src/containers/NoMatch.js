@@ -4,9 +4,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import Credits from '../components/Credits'
-import ImageExample from '../components/ImageExample'
-
 
 type Props = {
   // props
@@ -49,11 +46,7 @@ class NoMatch extends Component {
       <div style={{ padding: '1rem' }}>
         <h1>404: Whups, how did you get here ?!</h1>
 
-        <ImageExample />
-
         <p><Link to="/">Go back</Link></p>
-
-        <Credits />
       </div>
     )
   }

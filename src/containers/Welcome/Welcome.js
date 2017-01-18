@@ -20,7 +20,7 @@ type Props = {
 }
 
 type State = {
-  error: ?string,
+  error: string,
   name: string,
 }
 
@@ -33,7 +33,7 @@ class Welcome extends Component {
     super(props)
 
     this.state = {
-      error: null,
+      error: '',
       name: props.name,
     }
 
