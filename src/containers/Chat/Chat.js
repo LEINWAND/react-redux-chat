@@ -140,6 +140,7 @@ class Chat extends Component {
         <div className="new-message column-center">
           <Input
             className="full-width"
+            disabled={isLoading}
             placeholder="what do you want to say ?"
             maxLength={100}
             value={newMessage}

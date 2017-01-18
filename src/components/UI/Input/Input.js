@@ -7,6 +7,7 @@ import classnames from 'classnames'
 
 type Props = {
   className?: string,
+  disabled?: boolean,
   error?: string,
   placeholder?: string,
   maxLength?: number,
@@ -48,7 +49,7 @@ class Input extends Component {
 
   render() {
     const {
-      className, error, placeholder, maxLength, type, value, onChange,
+      className, disabled, error, placeholder, maxLength, type, value, onChange,
     } = this.props
 
     const inputClasses = classnames([
@@ -59,6 +60,7 @@ class Input extends Component {
       <div className={inputClasses}>
         <input
           className={className}
+          disabled={disabled ? 'disabled' : false}
           maxLength={maxLength}
           placeholder={placeholder}
           type={type || 'text'}
