@@ -59,50 +59,56 @@ class Chat extends Component {
   /// Mounting
 
   componentWillMount() {
-    const messagesRef = (this: any).messagesRef
+    const { currentUser, router } = this.props
 
-    // NOTE: add real-time listener for new messages and save them to messages store
-    messagesRef.on('child_added', (snapshot: Object) => {
-      const message = snapshot.val()
-
-      // NOTE: only trigger for data changes after initial data loaded
-      if ( this.state.isFetching ) return
-
-      const messageId = snapshot.key
-      if ( ! find(this.props.messages, { id: messageId }) ) {
-        const messageData = {
-          id: messageId,
-          ...message
-        }
-        this.props.dispatch( newMessage(messageData) )
-      }
-    })
-
-    // NOTE: initially fetch all messages from firebase if there are no messages in store yet
-    if ( ! this.props.messages.length ) {
-      messagesRef
-        .once('value')
-        .then((snapshot: Object) => {
-          const messages = snapshot.val()
-
-          const migratedMessages = []
-          for ( const messageId in messages ) {
-            const message = {
-              id: messageId,
-              ...messages[messageId]
-            }
-            migratedMessages.push(message)
-          }
-
-          this.props.dispatch( fetchMessages(migratedMessages) )
-        })
-        .then(() => this.setState({ isFetching: false }))
-        .catch((error) => {
-          // add some error handling
-          console.debug(error)
-        })
+    if ( currentUser === '' ) {
+      router.replace('/')
     } else {
-      this.setState({ isFetching: false })
+      const messagesRef = (this: any).messagesRef
+
+      // NOTE: add real-time listener for new messages and save them to messages store
+      messagesRef.on('child_added', (snapshot: Object) => {
+        const message = snapshot.val()
+
+        // NOTE: only trigger for data changes after initial data loaded
+        if ( this.state.isFetching ) return
+
+        const messageId = snapshot.key
+        if ( ! find(this.props.messages, { id: messageId }) ) {
+          const messageData = {
+            id: messageId,
+            ...message
+          }
+          this.props.dispatch( newMessage(messageData) )
+        }
+      })
+
+      // NOTE: initially fetch all messages from firebase if there are no messages in store yet
+      if ( ! this.props.messages.length ) {
+        messagesRef
+          .once('value')
+          .then((snapshot: Object) => {
+            const messages = snapshot.val()
+
+            const migratedMessages = []
+            for ( const messageId in messages ) {
+              const message = {
+                id: messageId,
+                ...messages[messageId]
+              }
+              migratedMessages.push(message)
+            }
+
+            this.props.dispatch( fetchMessages(migratedMessages) )
+          })
+          .then(() => this.setState({ isFetching: false }))
+          .catch((error) => {
+            // add some error handling
+            console.debug(error)
+          })
+      } else {
+        this.setState({ isFetching: false })
+      }
     }
   }
 
