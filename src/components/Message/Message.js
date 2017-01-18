@@ -48,7 +48,7 @@ class Message extends Component {
     const { createdAt, name, text } = this.props.data
     const { own, showDetails } = this.props
 
-    const date = moment(createdAt).format('DD.MM.YYYY HH:MM')
+    const timestamp = moment.unix(createdAt).format('DD.MM.YYYY HH:mm')
 
     const circleClasses = classnames([
       'circle',
@@ -68,7 +68,7 @@ class Message extends Component {
               <div className={circleClasses}></div>
               <div className="info row-between">
                 {name}
-                <div className="timestamp">{date}</div>
+                <div className="timestamp">{timestamp}</div>
               </div>
             </div>
           : null
