@@ -121,7 +121,7 @@ class Chat extends Component {
             ? messages.map((message, index) => {
                 const isOwnMessage = message.name == currentUser
 
-                const prevMessage = messages[index - 1]
+                const prevMessage = messages[index-1]
                 const showDetails = ! prevMessage
                   || prevMessage.name !== message.name
 
@@ -130,7 +130,7 @@ class Chat extends Component {
                     data={message}
                     own={isOwnMessage}
                     showDetails={showDetails}
-                    key={message.id}
+                    key={index}
                   />
                 )
               })
