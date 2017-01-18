@@ -9,6 +9,7 @@ export type Action =
     { type: 'CHANGE_USER', payload: { user: string } }
 
   // messages
+  | { type: 'FETCH_MESSAGES', payload: Array<Message> }
   | { type: 'NEW_MESSAGE', payload: Message }
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any
