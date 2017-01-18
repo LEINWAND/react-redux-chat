@@ -4,7 +4,8 @@ A slick Firebase-connected mobile chat, demonstrating the [react-redux-app](http
 
 ## Screenshots
 
-soon ...
+<img width="360" src="https://github.com/miclaus/react-redux-chat/blob/master/assets/images/screenshot-welcome.png" />
+<img width="360" src="https://github.com/miclaus/react-redux-chat/blob/master/assets/images/screenshot-chat.png" />
 
 
 ## Licence
