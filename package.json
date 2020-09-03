@@ -88,7 +88,7 @@
     "concurrently": "^3.1.0",
     "css-loader": "^0.25.0",
     "flow-bin": "^0.34.0",
-    "node-sass": "^3.11.2",
+    "node-sass": "^4.14.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
